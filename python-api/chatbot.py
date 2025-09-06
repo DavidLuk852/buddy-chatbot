@@ -1,7 +1,7 @@
 from huggingface_hub import InferenceClient
 
 def get_bot_response(user_message):
-    client = InferenceClient(token="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")  # Replace with your token
+    client = InferenceClient(token="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")  # Replace with your token
     messages = [
         {"role": "user", "content": user_message},
     ]
