@@ -65,7 +65,9 @@ function App() {
             onKeyPress={handleKeyPress}
             placeholder="Ask me anything about HKBU..."
           />
-          <button onClick={handleSend}>✈️</button> {/* Replace text with paper plane icon */}
+          <button onClick={handleSend}>
+            <img src="Send.png" alt="Send Icon" className="button-icon" />
+          </button>
         </div>
       </div>
     </div>

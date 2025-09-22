@@ -146,6 +146,12 @@
   background-color: #0e8a6e;
 }
 
+.button-icon {
+  width: 17px; /* Adjust size as needed */
+  height: 17px;
+  vertical-align: middle;
+}
+
 @media (max-width: 600px) {
   .chat-container {
     padding: 10px;
