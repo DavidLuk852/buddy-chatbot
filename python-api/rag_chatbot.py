@@ -109,9 +109,9 @@ retriever = vectorstore.as_retriever(k=4)
 model = ChatOllama(model="llama3.1")
 prompt = PromptTemplate(
     template="""You are an assistant for question-answering tasks.
-    Use the following documents to answer the question, do not mention document IDs, and consider the context of previous questions if relevant.
+    Use the following documents to answer the question concisely.
     If you don't know the answer, just say that you don't know.
-    Use three sentences maximum and keep the answer concise:
+    keep the answer concise:
     Question: {question} 
     Documents: {documents} 
     Answer: 

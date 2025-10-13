@@ -1,10 +1,44 @@
+/* App.css */
+
+/* Ensure html and body cover the entire viewport and match the theme */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Apply theme-specific background to body */
+html.light, body.light {
+  background-color: #f5f5f5; /* Match app-container light mode */
+}
+
+html.dark, body.dark {
+  background-color: #1a1b1e; /* Match app-container dark mode */
+}
+
+/* Base styles for the app container */
 .app-container {
   display: flex;
   height: 100vh;
-  background-color: #f5f5f5;
+  width: 100vw; /* Ensure full width coverage */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative; /* Ensure proper positioning context for fixed elements */
 }
 
+/* Light theme (default) */
+.app-container.light {
+  background-color: #f5f5f5; /* Light background */
+  color: #202123; /* Dark text */
+}
+
+/* Dark theme */
+.app-container.dark {
+  background-color: #1a1b1e; /* Dark background */
+  color: #d1d5db; /* Light text */
+}
+
+/* Sidebar toggle button */
 .sidebar-toggle {
   position: fixed;
   top: 10px;
@@ -14,20 +48,42 @@
   border: none;
   cursor: pointer;
   z-index: 1000;
-  color: #333;
+  padding: 5px;
+  transition: color 0.3s;
 }
 
+.app-container.light .sidebar-toggle {
+  color: #333; /* Dark icon for light mode */
+}
+
+.app-container.dark .sidebar-toggle {
+  color: #d1d5db; /* Light icon for dark mode */
+}
+
+.sidebar-toggle:hover {
+  color: #10a37f; /* Accent color for hover, consistent in both themes */
+}
+
+/* Sidebar styles */
 .sidebar {
   width: 0;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #202123;
   padding-top: 60px;
-  transition: 0.3s;
-  overflow-x: hidden;
+  transition: width 0.3s ease;
+  overflow-y: auto; /* Allow scrolling if content overflows */
   z-index: 100;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.app-container.light .sidebar {
+  background-color: #202123; /* Original sidebar background */
+}
+
+.app-container.dark .sidebar {
+  background-color: #2a2b32; /* Slightly lighter dark background for sidebar */
 }
 
 .sidebar.open {
@@ -35,26 +91,62 @@
 }
 
 .sidebar h2 {
-  color: #fff;
   padding: 10px 20px;
   font-size: 18px;
+  border-bottom: 1px solid #2a2b32; /* Separator for clarity */
+}
+
+.app-container.light .sidebar h2 {
+  color: #fff; /* White text for sidebar header */
+}
+
+.app-container.dark .sidebar h2 {
+  color: #e5e7eb; /* Slightly lighter text for dark mode */
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar li {
-  color: #d1d5db;
   padding: 10px 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center; /* Align select elements */
+}
+
+.app-container.light .sidebar li {
+  color: #d1d5db; /* Original light text */
+}
+
+.app-container.dark .sidebar li {
+  color: #e5e7eb; /* Lighter text for dark mode */
 }
 
 .sidebar li:hover {
-  background-color: #2a2b32;
+  background-color: #2a2b32; /* Hover background, works for both themes */
 }
 
+.sidebar li select {
+  margin-left: 10px;
+  border: 1px solid #40414f;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.app-container.light .sidebar li select {
+  background-color: #2a2b32;
+  color: #d1d5db;
+}
+
+.app-container.dark .sidebar li select {
+  background-color: #40414f; /* Slightly lighter for dark mode */
+  color: #e5e7eb;
+}
+
+/* Chat container */
 .chat-container {
   flex: 1;
   display: flex;
@@ -62,28 +154,51 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  min-height: 0; /* Prevent flex child from overflowing */
+  width: 100%; /* Ensure it spans the available space */
 }
 
+/* App header */
 .app-header {
   text-align: center;
-  color: #202123;
   font-size: 28px;
   margin-bottom: 20px;
   font-weight: 600;
 }
 
+.app-container.light .app-header {
+  color: #202123; /* Dark text for light mode */
+}
+
+.app-container.dark .app-header {
+  color: #e5e7eb; /* Light text for dark mode */
+}
+
+/* Chat window */
 .chat-window {
   flex: 1;
   overflow-y: auto;
-  background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between messages */
 }
 
+.app-container.light .chat-window {
+  background-color: #fff; /* White background for light mode */
+}
+
+.app-container.dark .chat-window {
+  background-color: #2a2b32; /* Dark background for chat window */
+}
+
+/* Message styles */
 .message {
-  margin: 10px 0;
+  margin: 0; /* Reset margin for custom spacing */
+  max-width: 100%; /* Ensure messages don’t overflow */
 }
 
 .message.user {
@@ -101,30 +216,56 @@
   border-radius: 10px;
   font-size: 14px;
   line-height: 1.4;
+  word-wrap: break-word; /* Handle long words */
 }
 
 .message.user .message-bubble {
-  background-color: #10a37f;
+  background-color: #10a37f; /* User message color, same for both themes */
   color: #fff;
 }
 
 .message.bot .message-bubble {
-  background-color: #40414f;
-  color: #d1d5db;
+  background-color: #40414f; /* Bot message background */
+  color: #d1d5db; /* Light text */
 }
 
+.app-container.dark .message.bot .message-bubble {
+  background-color: #555666; /* Slightly lighter for dark mode */
+  color: #e5e7eb;
+}
+
+/* Input area */
 .input-area {
   display: flex;
   gap: 10px;
+  align-items: center; /* Vertically center input and button */
 }
 
-.input-area input {
+.input-area textarea {
   flex: 1;
   padding: 12px;
-  border: 1px solid #e0e0e0;
   border-radius: 5px;
   font-size: 14px;
   outline: none;
+  transition: border-color 0.3s;
+  min-height: 60px; /* Ensure minimum height for visibility */
+}
+
+.app-container.light .input-area textarea {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  color: #202123;
+}
+
+.app-container.dark .input-area textarea {
+  border: 1px solid #444;
+  background-color: #40414f;
+  color: #e5e7eb;
+}
+
+.input-area textarea:focus {
+  border-color: #10a37f;
+  box-shadow: 0 0 5px rgba(16, 163, 127, 0.3);
 }
 
 .input-area button {
@@ -140,6 +281,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s;
 }
 
 .input-area button:hover {
@@ -147,11 +289,31 @@
 }
 
 .button-icon {
-  width: 17px; /* Adjust size as needed */
+  width: 17px;
   height: 17px;
   vertical-align: middle;
+  filter: brightness(0) invert(1); /* Ensure icon is visible (white) in both themes */
 }
 
+/* Loading animation */
+.loading {
+  text-align: center;
+  font-style: italic;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.app-container.light .loading {
+  color: #666;
+  background-color: #f0f0f0;
+}
+
+.app-container.dark .loading {
+  color: #aaa;
+  background-color: #40414f;
+}
+
+/* Responsive design */
 @media (max-width: 600px) {
   .chat-container {
     padding: 10px;
@@ -159,11 +321,32 @@
   .message-bubble {
     max-width: 80%;
   }
-  .input-area input {
+  .input-area textarea {
     padding: 8px;
   }
   .input-area button {
     width: 35px;
     height: 35px;
+  }
+  .sidebar.open {
+    width: 200px; /* Slightly narrower on mobile */
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .app-container.light .message.bot .message-bubble {
+    background-color: #2a2b32;
+    color: #fff;
+  }
+  .app-container.dark .message.bot .message-bubble {
+    background-color: #1a1b1e;
+    color: #fff;
+  }
+  .app-container.light .sidebar {
+    background-color: #1a1b1e;
+  }
+  .app-container.dark .sidebar {
+    background-color: #1a1b1e;
   }
 }
