@@ -7,7 +7,7 @@ function App() {
   const [input, setInput] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [theme, setTheme] = useState('light'); // New state for theme
+  const [theme, setTheme] = useState('light');
   const chatWindowRef = useRef(null);
 
   // Scroll to the bottom of the chat window when messages change
@@ -17,7 +17,7 @@ function App() {
     }
   }, [messages]);
 
-  // Load theme from localStorage on mount (optional)
+  // Load theme from localStorage on mount
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
@@ -28,7 +28,7 @@ function App() {
   const handleThemeChange = (e) => {
     const selectedTheme = e.target.value;
     setTheme(selectedTheme);
-    localStorage.setItem('theme', selectedTheme); // Save theme to localStorage (optional)
+    localStorage.setItem('theme', selectedTheme);
     document.documentElement.className = selectedTheme;
   };
 
@@ -66,8 +66,24 @@ function App() {
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
+  // Useful links data
+  const usefulLinks = [
+    {
+      title: 'HKBU Library Opening Hours',
+      url: 'https://library.hkbu.edu.hk/using-the-library/opening-hours/regular-service-hours/',
+    },
+    {
+      title: 'HKBU Course Add/Drop',
+      url: 'https://ar.hkbu.edu.hk/student-services/new-student-orientation/study/course-add-drop-for-new-students',
+    },
+    {
+      title: 'HKBU Academic Calendar',
+      url: 'https://ar.hkbu.edu.hk/academic-calendar/2025-2026',
+    },
+  ];
+
   return (
-    <div className={`app-container ${theme}`}> {/* Apply theme class to app-container */}
+    <div className={`app-container ${theme} ${sidebarOpen ? 'sidebar-open' : ''}`}>
       <button
         aria-label="Toggle sidebar"
         className="sidebar-toggle"
@@ -88,33 +104,53 @@ function App() {
           <li>Model: Llama-3.1</li>
         </ul>
       </div>
-      <div className="chat-container">
-        <h1 className="app-header">BUddy: Your AI Guide</h1>
-        <div className="chat-window" ref={chatWindowRef}>
-          {messages.map((msg, index) => (
-            <div key={index} className={`message ${msg.sender}`}>
-              <div className="message-bubble">
-                {msg.text.split('\n').map((line, i) => (
-                  <div key={i}>{line}</div>
+      <div className="links-sidebar">
+        <h2>Useful Links</h2>
+        <ul>
+          {usefulLinks.map((link, index) => (
+            <li key={index}>
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                {link.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="main-content-wrapper">
+        <div className="centered-chat">
+          <div className="main-content">
+            <div className="chat-container">
+              <div className="header-wrapper">
+                <h1 className="app-header">BUddy: Your AI Guide</h1>
+              </div>
+              <div className="chat-window" ref={chatWindowRef}>
+                {messages.map((msg, index) => (
+                  <div key={index} className={`message ${msg.sender}`}>
+                    <div className="message-bubble">
+                      {msg.text.split('\n').map((line, i) => (
+                        <div key={i}>{line}</div>
+                      ))}
+                    </div>
+                  </div>
                 ))}
+                {isLoading && <div className="loading">Thinking...</div>}
+              </div>
+              <div className="input-area">
+                <textarea
+                  aria-label="Chat input"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Ask me anything about HKBU... (Press Shift + Enter for new line)"
+                  rows="3"
+                  style={{ resize: 'vertical' }}
+                />
+                <button onClick={handleSend} aria-label="Send message">
+                  <img src="Send.png" alt="Send Icon" className="button-icon" />
+                </button>
               </div>
             </div>
-          ))}
-          {isLoading && <div className="loading">Thinking...</div>}
-        </div>
-        <div className="input-area">
-          <textarea
-            aria-label="Chat input"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Ask me anything about HKBU... (Press Shift + Enter for new line)"
-            rows="3"
-            style={{ resize: 'vertical' }}
-          />
-          <button onClick={handleSend} aria-label="Send message">
-            <img src="Send.png" alt="Send Icon" className="button-icon" />
-          </button>
+          </div>
         </div>
       </div>
     </div>

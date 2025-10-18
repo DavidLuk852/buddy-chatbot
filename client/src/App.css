@@ -10,32 +10,33 @@ html, body {
 
 /* Apply theme-specific background to body */
 html.light, body.light {
-  background-color: #f5f5f5; /* Match app-container light mode */
+  background-color: #f5f5f5;
 }
 
 html.dark, body.dark {
-  background-color: #1a1b1e; /* Match app-container dark mode */
+  background-color: #1a1b1e;
 }
 
 /* Base styles for the app container */
 .app-container {
   display: flex;
+  flex-direction: column;
   height: 100vh;
-  width: 100vw; /* Ensure full width coverage */
+  width: 100vw;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  position: relative; /* Ensure proper positioning context for fixed elements */
+  position: relative;
 }
 
 /* Light theme (default) */
 .app-container.light {
-  background-color: #f5f5f5; /* Light background */
-  color: #202123; /* Dark text */
+  background-color: #f5f5f5;
+  color: #202123;
 }
 
 /* Dark theme */
 .app-container.dark {
-  background-color: #1a1b1e; /* Dark background */
-  color: #d1d5db; /* Light text */
+  background-color: #1a1b1e;
+  color: #d1d5db;
 }
 
 /* Sidebar toggle button */
@@ -53,18 +54,18 @@ html.dark, body.dark {
 }
 
 .app-container.light .sidebar-toggle {
-  color: #333; /* Dark icon for light mode */
+  color: #333;
 }
 
 .app-container.dark .sidebar-toggle {
-  color: #d1d5db; /* Light icon for dark mode */
+  color: #d1d5db;
 }
 
 .sidebar-toggle:hover {
-  color: #10a37f; /* Accent color for hover, consistent in both themes */
+  color: #10a37f;
 }
 
-/* Sidebar styles */
+/* Left Sidebar (Settings) styles */
 .sidebar {
   width: 0;
   position: fixed;
@@ -73,17 +74,17 @@ html.dark, body.dark {
   height: 100%;
   padding-top: 60px;
   transition: width 0.3s ease;
-  overflow-y: auto; /* Allow scrolling if content overflows */
+  overflow-y: auto;
   z-index: 100;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .app-container.light .sidebar {
-  background-color: #202123; /* Original sidebar background */
+  background-color: #202123;
 }
 
 .app-container.dark .sidebar {
-  background-color: #2a2b32; /* Slightly lighter dark background for sidebar */
+  background-color: #2a2b32;
 }
 
 .sidebar.open {
@@ -93,15 +94,15 @@ html.dark, body.dark {
 .sidebar h2 {
   padding: 10px 20px;
   font-size: 18px;
-  border-bottom: 1px solid #2a2b32; /* Separator for clarity */
+  border-bottom: 1px solid #2a2b32;
 }
 
 .app-container.light .sidebar h2 {
-  color: #fff; /* White text for sidebar header */
+  color: #fff;
 }
 
 .app-container.dark .sidebar h2 {
-  color: #e5e7eb; /* Slightly lighter text for dark mode */
+  color: #e5e7eb;
 }
 
 .sidebar ul {
@@ -114,19 +115,19 @@ html.dark, body.dark {
   padding: 10px 20px;
   cursor: pointer;
   display: flex;
-  align-items: center; /* Align select elements */
+  align-items: center;
 }
 
 .app-container.light .sidebar li {
-  color: #d1d5db; /* Original light text */
+  color: #d1d5db;
 }
 
 .app-container.dark .sidebar li {
-  color: #e5e7eb; /* Lighter text for dark mode */
+  color: #e5e7eb;
 }
 
 .sidebar li:hover {
-  background-color: #2a2b32; /* Hover background, works for both themes */
+  background-color: #2a2b32;
 }
 
 .sidebar li select {
@@ -142,39 +143,145 @@ html.dark, body.dark {
 }
 
 .app-container.dark .sidebar li select {
-  background-color: #40414f; /* Slightly lighter for dark mode */
+  background-color: #40414f;
   color: #e5e7eb;
 }
 
-/* Chat container */
+/* Main content wrapper - centers the content horizontally */
+.main-content-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 20px; /* Adjusted for fixed header height */
+  box-sizing: border-box;
+}
+
+/* Conditional padding when sidebar is open */
+.app-container.sidebar-open .main-content-wrapper {
+  padding-left: 270px;
+}
+
+/* Centered chat area - widened */
+.centered-chat {
+  width: 100%;
+  max-width: 1000px; /* Increased from 1000px to 1200px */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure it takes full height */
+}
+
+/* Main content area - centered vertically */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align to top */
+  align-items: center; /* Center horizontally */
+  min-height: 0;
+  width: 100%; /* Utilize full width */
+}
+
+/* Chat container - aligned to top */
 .chat-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  min-height: 0; /* Prevent flex child from overflowing */
-  width: 100%; /* Ensure it spans the available space */
+  min-height: 0;
+  width: 100%; /* Utilize full width */
 }
 
-/* App header */
+/* Top Right Sidebar (Useful Links) */
+.links-sidebar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  height: fit-content;
+}
+
+.app-container.light .links-sidebar {
+  background-color: #fff;
+}
+
+.app-container.dark .links-sidebar {
+  background-color: #2a2b32;
+}
+
+.links-sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #2a2b32;
+  padding-bottom: 10px;
+}
+
+.app-container.light .links-sidebar h2 {
+  color: #202123;
+}
+
+.app-container.dark .links-sidebar h2 {
+  color: #e5e7eb;
+}
+
+.links-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links-sidebar li {
+  margin-bottom: 12px;
+}
+
+.links-sidebar a {
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+  display: block;
+  padding: 8px 0;
+}
+
+.app-container.light .links-sidebar a {
+  color: #10a37f;
+}
+
+.app-container.dark .links-sidebar a {
+  color: #66b3ff;
+}
+
+.links-sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* App header - positioned at the top */
 .app-header {
   text-align: center;
   font-size: 28px;
-  margin-bottom: 20px;
   font-weight: 600;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Utilize full width */
+  background-color: inherit; /* Match parent background */
+  z-index: 100;
+  padding: 20px 0; /* Increased padding for better visibility */
+  box-sizing: border-box;
 }
 
 .app-container.light .app-header {
-  color: #202123; /* Dark text for light mode */
+  color: #202123;
 }
 
 .app-container.dark .app-header {
-  color: #e5e7eb; /* Light text for dark mode */
+  color: #e5e7eb;
 }
 
-/* Chat window */
+/* Chat window - positioned under header */
 .chat-window {
   flex: 1;
   overflow-y: auto;
@@ -184,53 +291,62 @@ html.dark, body.dark {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Space between messages */
+  gap: 10px;
+  min-height: 400px;
+  width: 100%; /* Match parent width */
+  max-width: 100%; /* Prevent overflow beyond parent */
+  margin-top: 80px; /* Space below the fixed header */
+  box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 .app-container.light .chat-window {
-  background-color: #fff; /* White background for light mode */
+  background-color: #fff;
 }
 
 .app-container.dark .chat-window {
-  background-color: #2a2b32; /* Dark background for chat window */
+  background-color: #2a2b32;
 }
 
 /* Message styles */
 .message {
-  margin: 0; /* Reset margin for custom spacing */
-  max-width: 100%; /* Ensure messages don’t overflow */
+  margin: 0;
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .message.user {
-  text-align: right;
+  justify-content: flex-end;
 }
 
 .message.bot {
-  text-align: left;
+  justify-content: flex-start;
 }
 
 .message-bubble {
   display: inline-block;
-  max-width: 70%;
+  max-width: 85%;
   padding: 12px 16px;
   border-radius: 10px;
   font-size: 14px;
   line-height: 1.4;
-  word-wrap: break-word; /* Handle long words */
+  word-wrap: break-word;
 }
 
 .message.user .message-bubble {
-  background-color: #10a37f; /* User message color, same for both themes */
+  background-color: #10a37f;
   color: #fff;
 }
 
 .message.bot .message-bubble {
-  background-color: #40414f; /* Bot message background */
-  color: #d1d5db; /* Light text */
+  background-color: #40414f;
+  color: #d1d5db;
 }
 
 .app-container.dark .message.bot .message-bubble {
-  background-color: #555666; /* Slightly lighter for dark mode */
+  background-color: #555666;
   color: #e5e7eb;
 }
 
@@ -238,7 +354,8 @@ html.dark, body.dark {
 .input-area {
   display: flex;
   gap: 10px;
-  align-items: center; /* Vertically center input and button */
+  align-items: center;
+  width: 100%; /* Utilize full width */
 }
 
 .input-area textarea {
@@ -248,7 +365,9 @@ html.dark, body.dark {
   font-size: 14px;
   outline: none;
   transition: border-color 0.3s;
-  min-height: 60px; /* Ensure minimum height for visibility */
+  min-height: 60px;
+  resize: vertical;
+  box-sizing: border-box;
 }
 
 .app-container.light .input-area textarea {
@@ -277,11 +396,11 @@ html.dark, body.dark {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s;
+  flex-shrink: 0;
 }
 
 .input-area button:hover {
@@ -291,8 +410,7 @@ html.dark, body.dark {
 .button-icon {
   width: 17px;
   height: 17px;
-  vertical-align: middle;
-  filter: brightness(0) invert(1); /* Ensure icon is visible (white) in both themes */
+  filter: brightness(0) invert(1);
 }
 
 /* Loading animation */
@@ -314,22 +432,52 @@ html.dark, body.dark {
 }
 
 /* Responsive design */
+@media (max-width: 1024px) {
+  .main-content-wrapper {
+    padding-left: 20px;
+    padding-top: 20px;
+  }
+  .app-container.sidebar-open .main-content-wrapper {
+    padding-left: 20px; /* Smaller shift on smaller screens */
+  }
+  .links-sidebar {
+    position: static;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  .centered-chat {
+    max-width: 100%;
+  }
+  .chat-window {
+    margin-top: 80px; /* Maintain space below header on smaller screens */
+  }
+}
+
 @media (max-width: 600px) {
-  .chat-container {
+  .main-content {
     padding: 10px;
   }
+  .chat-container {
+    padding: 0;
+  }
   .message-bubble {
-    max-width: 80%;
+    max-width: 85%;
   }
-  .input-area textarea {
-    padding: 8px;
-  }
-  .input-area button {
-    width: 35px;
-    height: 35px;
+  .links-sidebar {
+    padding: 15px;
   }
   .sidebar.open {
-    width: 200px; /* Slightly narrower on mobile */
+    width: 200px;
+  }
+  .main-content-wrapper {
+    padding-left: 20px;
+  }
+  .app-container.sidebar-open .main-content-wrapper {
+    padding-left: 220px;
+  }
+  .chat-window {
+    margin-top: 80px; /* Maintain space below header on smaller screens */
   }
 }
 
@@ -348,5 +496,13 @@ html.dark, body.dark {
   }
   .app-container.dark .sidebar {
     background-color: #1a1b1e;
+  }
+  .app-container.light .links-sidebar {
+    background-color: #1a1b1e;
+    color: #fff;
+  }
+  .app-container.dark .links-sidebar {
+    background-color: #1a1b1e;
+    color: #fff;
   }
 }
