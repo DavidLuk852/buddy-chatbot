@@ -153,13 +153,9 @@ html.dark, body.dark {
   display: flex;
   justify-content: center;
   padding: 20px;
-  padding-top: 20px; /* Adjusted for fixed header height */
+  padding-top: 20px; /* Space for fixed header */
   box-sizing: border-box;
-}
-
-/* Conditional padding when sidebar is open */
-.app-container.sidebar-open .main-content-wrapper {
-  padding-left: 270px;
+  height: calc(100vh - 80px); /* Constrain height to viewport minus header */
 }
 
 /* Centered chat area - widened */
@@ -284,7 +280,7 @@ html.dark, body.dark {
 /* Chat window - positioned under header */
 .chat-window {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: scroll; /* Changed from auto to scroll to always show scrollbar */
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -297,6 +293,51 @@ html.dark, body.dark {
   max-width: 100%; /* Prevent overflow beyond parent */
   margin-top: 80px; /* Space below the fixed header */
   box-sizing: border-box; /* Ensure padding is included in width */
+  scrollbar-width: thin; /* Makes the scrollbar thinner */
+  scrollbar-color: #10a37f transparent; /* Thumb and track colors for light theme */
+}
+
+.app-container.dark .chat-window {
+  scrollbar-color: #66b3ff #40414f; /* Thumb and track colors for dark theme */
+}
+
+/* Custom scrollbar styles for WebKit browsers (Chrome, Safari, Edge) */
+.chat-window::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.chat-window::-webkit-scrollbar-track {
+  background: transparent; /* Track background */
+  border-radius: 10px;
+}
+
+.app-container.light .chat-window::-webkit-scrollbar-track {
+  background: #e0e0e0; /* Light theme track */
+}
+
+.app-container.dark .chat-window::-webkit-scrollbar-track {
+  background: #40414f; /* Dark theme track */
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: #10a37f; /* Scrollbar thumb color */
+  border-radius: 10px;
+}
+
+.app-container.light .chat-window::-webkit-scrollbar-thumb {
+  background: #10a37f; /* Light theme thumb */
+}
+
+.app-container.dark .chat-window::-webkit-scrollbar-thumb {
+  background: #66b3ff; /* Dark theme thumb */
+}
+
+.chat-window::-webkit-scrollbar-thumb:hover {
+  background: #0e8a6e; /* Hover color for light theme */
+}
+
+.app-container.dark .chat-window::-webkit-scrollbar-thumb:hover {
+  background: #4d8cff; /* Hover color for dark theme */
 }
 
 .app-container.light .chat-window {
@@ -323,6 +364,7 @@ html.dark, body.dark {
 
 .message.bot {
   justify-content: flex-start;
+  max-width: 80%;
 }
 
 .message-bubble {

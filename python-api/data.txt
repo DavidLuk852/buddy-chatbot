@@ -572,10 +572,83 @@ cGPA 2.00–2.66: Pass Degree
 Individual faculties/schools may develop additional or alternative indicators for the award classifications in the programmes.)
 
 
+=== Tuition Fees ===
+Undergraduate Tuition Fees Schedule:
+Tuition fees are payable each year by 2 equal instalments, normally before the start of the first and second semester respectively. Tuition fees are non-refundable after payment.
+
+For local students newly admitted to UGC-funded undergraduate (UG) programmes, the first semester tuition fee will be paid by two instalments: the first at the time of accepting the admission offer and the balance in October.
+
+-Semester 1:
+Early July : New UG students with JEE admission background
+End August : New UG students
+Early September: Returning UG Students
+Mid October: Balance payment by all new UG students
+
+-Semester 2:
+Mid December: All students
 
 
-General Notes for Academic Registry and Dining
-- Bad Weather Arrangements: Covered separately for courses, exams, etc. (e.g., classes suspended during Typhoon 8+ or Black Rainstorm).
-- Other Resources: BUniPort for applications; University Student Handbook; Guidelines on Academic Integrity; HKBU Digital Credential System for records.
-- Contacts: Academic Registry; Privacy Policy applies.
-- Copyright © 2025 Hong Kong Baptist University.
+Tuition Fee Payment Arrangements:
+Payment During Normal Period of Study:
+Students are required to pay full tuition fees per semester during the normal period of study, regardless of the number of units enrolled in the semester.
+
+Students who complete the graduation requirements within a period shorter than the normal study period owing to overload and/or having taken summer courses are still required to pay their tuition fees for the whole normal study period before they are approved to graduate.
+
+Duration of Study Programmes:
+4 years: Number of Semester to Pay Full Tuition Fees (regardless of the number of units enrolled): 8 semesters
+5 years: Number of Semester to Pay Full Tuition Fees (regardless of the number of units enrolled): 10 semesters
+6 years: Number of Semester to Pay Full Tuition Fees (regardless of the number of units enrolled): 12 semesters
+
+Payment Beyond Normal Period of Study:
+In special circumstances when students who have paid the tuition fees for the whole normal study period are required to study beyond the normal period of study to fulfil the graduation requirements, their tuition fees will be charged as below:
+Units Registered in the Extended Study Period: 
+Less than 12 units: Tuition Fee: Based on the number of units enrolled for the semester
+12 units or more: Full tuition fee
+A tuition fee debit note will be issued after the total number of units enrolled for the semester has been confirmed, i.e. after the course add/drop period.
+
+
+Deferral/Delay of Tuition Fee Payment:
+Deferral of Tuition Fee Payment:
+Students who have financial difficulties and cannot settle the tuition fee on time may apply for deferral of tuition fee payment before the payment due date.  Please visit Scholarship and Financial Aid of the Office of Student Affairs, and the Finance Office for assistance and application procedures.
+
+Delay of Tuition Fee Payment:
+If students fail to settle the tuition fee on or before the payment due date or by a later date specified when the deferral is granted:
+1. They will be charged a penalty of HK$500; and
+2. If they fail to settle the outstanding fees in 10 working days from the due date, they shall be considered as having unofficially withdrawn from the University.
+
+Please visit the website of the Finance Office for more details.
+
+
+=== Course Pre-registration ===
+All undergraduate students are required to participate in a Course Pre-registration exercise every semester to select elective courses for which they will register.
+
+Schedule:
+The Course Pre-registration exercise is conducted twice a year (once in each semester) in late July and mid-November.  The exact dates and the assigned timeslots will be announced via email nearer the time.  Normally, Course Pre-registration results are released in late August and late December each year.
+
+Students who fail to complete the Course Pre-registration exercise on time can only complete the course registration during the add/drop period after classes have begun.  However, it should be noted that many courses will be full and thus not available for registration by that time.
+
+Registration Priority:
+The priority in assigning courses to students is set according to the students' year of study, course types and the academic departments' special instructions, if any.  The priority of different course types is listed as follows:
+
+1. Major Required/ Core courses (those NOT assigned but require to register on their own)
+2. Major electives
+3. University core/GE courses (i.e. GE Distribution/Foundational/Interdisciplinary Thematic courses/GE Capstone)
+4. Free electives
+
+Details of Course Pre-registration exercise are available at BUniPort.
+
+Workflow of Course Pre-registration:
+Undergraduate students are required to participate in a Course Pre-registration exercise every semester to indicate their preferences of elective courses.
+
+1. The Academic Registry releases class timetable (2 semesters) for the following academic year in July.  Students should check the timetable at BUniPort under Course Information.
+2. Students will be informed via email before the exercise.  Students will be assigned a timeslot for completing the Course Pre-registration exercise.  The assigned timeslot can be checked under the "Pre-registration" page at BUniPort.
+3. The required courses have been assigned to students, including the failed courses.  Students should check and inform the Academic Registry if there is any discrepancy with their record.
+4. During the assigned pre-registration timeslots, students may (i) indicate their preferences of elective courses provided they meet the course requirements with no time clash on their timetable; and/or (ii) change the section of the required course(s) already assigned if there is time clash between the preferred elective course(s) and the required course(s).  Changes of section for required courses (but NOT the preferences for elective courses) is on a first-come-first-served basis.  Input and modification of course preference must be completed within the timeslot assigned.
+5. The courses will be assigned according to priority.  No guarantee of seats can be made due to limited class quota.
+6. The priority in assigning courses to students is set according to the students' year of study, course types and the academic departments' special instructions, if any.  The priority of different course types is listed as follows:
+(i) Major Required/ Core courses (those not assigned but require to register on their own)
+(ii) Major electives
+(iii) GE courses (e.g. both GE core and GE distribution requirement)
+(iv) Free electives
+During the course assignment process, course enrolment record and individual timetable in the BUniport will be temporarily suspended.  An email notification will be sent to students when the results of Course Pre-Registration Exercise are released.
+7. Students who fail to complete the exercise can only complete the course registration during the course add/drop period.  However, it should be noted that many courses will be full and not available for registration by that time.

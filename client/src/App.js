@@ -14,6 +14,7 @@ function App() {
   useEffect(() => {
     if (chatWindowRef.current) {
       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+      console.log("Scrolled to bottom");
     }
   }, [messages]);
 
@@ -69,6 +70,14 @@ function App() {
   // Useful links data
   const usefulLinks = [
     {
+      title: 'BUniPort',
+      url: "https://hkbu.login.duosecurity.com/email_first?authkey=ASW1D607YZ7K5I6QTR07&scid=df54dde46fe44e2f91a2bf145c4e2541&req-trace-group=4f2d62c50532d132fecbc2a8",
+    },
+    {
+      title: 'HKBU Moodle',
+      url: "https://buelearning.hkbu.edu.hk/login/index.php?loginredirect=1",
+    },
+    {
       title: 'HKBU Library Opening Hours',
       url: 'https://library.hkbu.edu.hk/using-the-library/opening-hours/regular-service-hours/',
     },
@@ -77,8 +86,32 @@ function App() {
       url: 'https://ar.hkbu.edu.hk/student-services/new-student-orientation/study/course-add-drop-for-new-students',
     },
     {
+      title: 'HKBU Course Pre-registration',
+      url: 'https://ar.hkbu.edu.hk/student-services/course-registration/pre-registration',
+    },
+    {
       title: 'HKBU Academic Calendar',
-      url: 'https://ar.hkbu.edu.hk/academic-calendar/2025-2026',
+      url: 'https://ar.hkbu.edu.hk/academic-calendar/monthly',
+    },
+    {
+      title: 'HKBU Bad Weather Arrangement',
+      url: 'https://ar.hkbu.edu.hk/student-services/useful-information/bad-weather-arrangement',
+    },
+    {
+      title: 'HKBU Campus Map',
+      url: "https://aao.hkbu.edu.hk/homecoming2018/filemanager/content/HKBU_campus_map.pdf",
+    },
+    {
+      title: 'Applications and Forms (Current Students)',
+      url: 'https://ar.hkbu.edu.hk/student-services/useful-information/applications-and-forms-student-services',
+    },
+    {
+      title: 'Follow-U-Print Printing Services',
+      url: 'https://ito.hkbu.edu.hk/services/printing-services.html',
+    },
+    {
+      title: 'Wi-Fi & Network Access',
+      url: 'https://ito.hkbu.edu.hk/services/wi-fi-network-access.html',
     },
   ];
 
