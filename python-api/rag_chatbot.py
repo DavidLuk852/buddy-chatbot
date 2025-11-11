@@ -42,7 +42,10 @@ vectorstore = SKLearnVectorStore.from_documents(
 retriever = vectorstore.as_retriever(k=4)
 
 # Initialize the model and prompt
-model = ChatOllama(model="llama3.1")
+model = ChatOllama(
+    model="llama3.1",
+    temperature=0.0,
+)
 prompt = PromptTemplate(
     template="""You are an assistant for question-answering tasks.
     Use the following documents to answer the question concisely.

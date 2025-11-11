@@ -1,5 +1,11 @@
 /* App.css */
 
+/* Dynamic font size via CSS variable */
+.chat-window {
+  --chat-font-size: 14px;
+  font-size: var(--chat-font-size);
+}
+
 /* Ensure html and body cover the entire viewport and match the theme */
 html, body {
   margin: 0;
@@ -19,6 +25,12 @@ html.dark, body.dark {
 
 /* Base styles for the app container */
 .app-container {
+  background-image: url('../public/background_image.png');
+  background-size: cover;          /* stretch to fill, keep aspect ratio */
+  background-position: center;     /* centre the image */
+  background-repeat: no-repeat;
+  background-attachment: fixed;    /* stays put when you scroll */
+  min-height: 100vh;               /* at least full height */
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -161,7 +173,7 @@ html.dark, body.dark {
 /* Centered chat area - widened */
 .centered-chat {
   width: 100%;
-  max-width: 1000px; /* Increased from 1000px to 1200px */
+  max-width: 1100px; 
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -186,72 +198,6 @@ html.dark, body.dark {
   flex-direction: column;
   min-height: 0;
   width: 100%; /* Utilize full width */
-}
-
-/* Top Right Sidebar (Useful Links) */
-.links-sidebar {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 300px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  height: fit-content;
-}
-
-.app-container.light .links-sidebar {
-  background-color: #fff;
-}
-
-.app-container.dark .links-sidebar {
-  background-color: #2a2b32;
-}
-
-.links-sidebar h2 {
-  font-size: 18px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #2a2b32;
-  padding-bottom: 10px;
-}
-
-.app-container.light .links-sidebar h2 {
-  color: #202123;
-}
-
-.app-container.dark .links-sidebar h2 {
-  color: #e5e7eb;
-}
-
-.links-sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.links-sidebar li {
-  margin-bottom: 12px;
-}
-
-.links-sidebar a {
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s;
-  display: block;
-  padding: 8px 0;
-}
-
-.app-container.light .links-sidebar a {
-  color: #10a37f;
-}
-
-.app-container.dark .links-sidebar a {
-  color: #66b3ff;
-}
-
-.links-sidebar a:hover {
-  text-decoration: underline;
 }
 
 /* App header - positioned at the top */
@@ -372,7 +318,6 @@ html.dark, body.dark {
   max-width: 85%;
   padding: 12px 16px;
   border-radius: 10px;
-  font-size: 14px;
   line-height: 1.4;
   word-wrap: break-word;
 }
@@ -547,4 +492,186 @@ html.dark, body.dark {
     background-color: #1a1b1e;
     color: #fff;
   }
+}
+
+/* ---------- FONT SIZE SLIDER (bottom-left) ---------- */
+.font-size-control {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 6px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 30;
+  font-size: 12px;
+}
+.app-container.dark .font-size-control {
+  background: rgba(42, 43, 50, 0.9);
+  color: #e5e7eb;
+}
+
+/* Hide label for screen readers only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Range input styling */
+.font-size-control input[type="range"] {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 4px;
+  background: #ccc;
+  border-radius: 2px;
+  outline: none;
+}
+.app-container.dark .font-size-control input[type="range"] {
+  background: #555;
+}
+
+.font-size-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #10a37f;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.app-container.dark .font-size-control input[type="range"]::-webkit-slider-thumb {
+  background: #66b3ff;
+}
+
+.font-size-control input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #10a37f;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+.app-container.dark .font-size-control input[type="range"]::-moz-range-thumb {
+  background: #66b3ff;
+}
+
+/* Show current size */
+.font-size-label {
+  min-width: 32px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ---------- TOGGLE BUTTON FOR USEFUL LINKS (top-right) ---------- */
+.links-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 8px;
+  transition: color 0.3s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-container.light .links-toggle { color: #333; }
+.app-container.dark .links-toggle  { color: #d1d5db; }
+.links-toggle:hover { color: #10a37f; }
+
+.icon-arrow-left {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 12px solid currentColor;
+  transition: transform 0.2s ease;
+}
+.links-toggle[aria-expanded="true"] .icon-arrow-left {
+  transform: rotate(180deg);
+}
+
+/* ---------- USEFUL LINKS PANEL (slide-in from right) ---------- */
+.links-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background-color: #ffffff;           /* Light mode: white */
+  padding-top: 60px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.15);
+}
+.app-container.light .links-sidebar { background-color: #202123; }
+.app-container.dark  .links-sidebar { background-color: #2a2b32; }
+
+.links-sidebar.open { width: 300px; }
+
+
+/* Header inside the panel */
+.links-sidebar h2 {
+  padding: 10px 20px;
+  font-size: 18px;
+  border-bottom: 1px solid #2a2b32;
+}
+.app-container.dark .links-sidebar h2 { color: #e5e7eb; }
+
+/* List items */
+.links-sidebar ul { list-style: none; padding: 0; margin: 0; }
+.links-sidebar li {
+  padding: 10px 20px;
+  display: block;
+  margin-bottom: 5px;
+}
+.links-sidebar a {
+  color: #10a37f;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+  padding: 8px 0;
+}
+.app-container.dark .links-sidebar a { color: #66b3ff; }
+.links-sidebar a:hover { text-decoration: underline; }
+
+/* ---------- LEFT ARROW ICON (pure CSS) ---------- */
+.icon-arrow-left {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 12px solid currentColor;   /* uses button text color */
+  transition: transform 0.2s ease;
+}
+
+/* Rotate 180° when panel is open (becomes right arrow) */
+.links-sidebar.open ~ .links-toggle .icon-arrow-left,
+.links-toggle[aria-expanded="true"] .icon-arrow-left {
+  transform: rotate(180deg);
+}
+
+/* ---------- FORCE WHITE / DARK BACKGROUND FOR LINKS SIDEBAR ---------- */
+.links-sidebar {
+  background-color: #ffffff !important;   /* Light mode: white */
+}
+.app-container.dark .links-sidebar {
+  background-color: #2a2b32 !important;   /* Dark mode: same as chat */
 }

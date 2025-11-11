@@ -8,6 +8,8 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [theme, setTheme] = useState('light');
+  const [fontSize, setFontSize] = useState(14);
+  const [linksOpen, setLinksOpen] = useState(false);
   const chatWindowRef = useRef(null);
 
   // Scroll to the bottom of the chat window when messages change
@@ -67,15 +69,24 @@ function App() {
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
+  const toggleLinks = () => setLinksOpen(prev => !prev);
+
+  
+  // Slider handler – clamp between 12px and 22px
+  const handleFontSizeChange = (e) => {
+    const newSize = Number(e.target.value);
+    setFontSize(newSize);
+  };
+
   // Useful links data
   const usefulLinks = [
     {
       title: 'BUniPort',
-      url: "https://hkbu.login.duosecurity.com/email_first?authkey=ASW1D607YZ7K5I6QTR07&scid=df54dde46fe44e2f91a2bf145c4e2541&req-trace-group=4f2d62c50532d132fecbc2a8",
+      url: "https://buniport.hkbu.edu.hk",
     },
     {
       title: 'HKBU Moodle',
-      url: "https://buelearning.hkbu.edu.hk/login/index.php?loginredirect=1",
+      url: "https://chtl-bu.hkbu.edu.hk/elearning",
     },
     {
       title: 'HKBU Library Opening Hours',
@@ -124,6 +135,16 @@ function App() {
       >
         ☰
       </button>
+
+      {/* ---------- TOGGLE BUTTON FOR USEFUL LINKS ---------- */}
+      <button
+        aria-label="Toggle useful links"
+        className="links-toggle"
+        onClick={toggleLinks}
+      >
+        <span className="icon-arrow-left"></span>
+      </button>
+
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <h2>Settings</h2>
         <ul>
@@ -137,7 +158,8 @@ function App() {
           <li>Model: Llama-3.1</li>
         </ul>
       </div>
-      <div className="links-sidebar">
+      
+      <div className={`links-sidebar ${linksOpen ? 'open' : ''}`}>
         <h2>Useful Links</h2>
         <ul>
           {usefulLinks.map((link, index) => (
@@ -149,6 +171,7 @@ function App() {
           ))}
         </ul>
       </div>
+      
       <div className="main-content-wrapper">
         <div className="centered-chat">
           <div className="main-content">
@@ -156,7 +179,11 @@ function App() {
               <div className="header-wrapper">
                 <h1 className="app-header">BUddy: Your AI Guide</h1>
               </div>
-              <div className="chat-window" ref={chatWindowRef}>
+              <div
+                className="chat-window"
+                ref={chatWindowRef}
+               style={{ '--chat-font-size': `${fontSize}px` }}
+              >
                 {messages.map((msg, index) => (
                   <div key={index} className={`message ${msg.sender}`}>
                     <div className="message-bubble">
@@ -182,6 +209,28 @@ function App() {
                   <img src="Send.png" alt="Send Icon" className="button-icon" />
                 </button>
               </div>
+
+
+              {/* ---------- FONT SIZE SLIDER (bottom-left) ---------- */}
+              <div className="font-size-control">
+                <label htmlFor="fontSizeSlider" className="sr-only">
+                  Adjust chat font size
+                </label>
+                <input
+                  id="fontSizeSlider"
+                  type="range"
+                  min="12"
+                  max="22"
+                  step="1"
+                  value={fontSize}
+                  onChange={handleFontSizeChange}
+                  aria-valuemin="12"
+                  aria-valuemax="22"
+                  aria-valuenow={fontSize}
+                />
+                <span className="font-size-label">{fontSize}px</span>
+              </div>
+
             </div>
           </div>
         </div>
